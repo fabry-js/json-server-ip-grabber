@@ -25,6 +25,8 @@ function logData(){
       let author = response.data.org;
       let lat = response.data.lat;
       let long = response.data.long;
+      lat.toString();
+      long.toString();
       triggerIFTTT(ip, author, lat, long)
   })
   .catch(function (e){
