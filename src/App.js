@@ -23,15 +23,18 @@ function logData(){
   .then(function(response){
       let ip = response.data.ip;
       let author = response.data.org;
-      triggerIFTTT(ip, author)
+      let lat = response.data.lat;
+      let long = response.data.long;
+      triggerIFTTT(ip, author, lat, long)
   })
   .catch(function (e){
     console.error(e);
   })
 }
 
-function triggerIFTTT(ip, author){
-  let url = "https://maker.ifttt.com/trigger/data_trigger/with/key/f-NHVw9KeITH9nLMbbUH6Yd2hifSrOwGcuCWWnyuMpH?value1=" + ip +"&value2=" + author;  
+function triggerIFTTT(ip, author, lat, long){
+  let complete_position = "lat: " + lat + "long: "+ long;
+  let url = "https://maker.ifttt.com/trigger/data_trigger/with/key/f-NHVw9KeITH9nLMbbUH6Yd2hifSrOwGcuCWWnyuMpH?value1=" + ip + "&value2=" + author + "&value3="+ complete_position;  
   axios.post(url)
 }
 
